@@ -19,10 +19,10 @@
     --gris-800:    #1f2937;
     --verde:       #1d7a4a;
     --verde-claro: #d4eddf;
-    --amarillo:    #b45309;
+    --amarillo:    #d97706;
     --amarillo-claro: #fef3c7;
-    --rojo:        #991b1b;
-    --rojo-claro:  #fee2e2;
+    --rojo:        #c0392b;
+    --rojo-claro:  #fde8e8;
     --radio:       8px;
   }
 
@@ -144,9 +144,9 @@
   .kpi-number span { font-size: 1.2rem; }
   .kpi-label { font-size: .78rem; color: var(--gris-500); margin-top: 4px; }
   .kpi-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
-  .dot-verde  { background: #4ade80; }
-  .dot-amarillo { background: #fbbf24; }
-  .dot-rojo { background: #f87171; }
+  .dot-verde    { background: #22c55e; }
+  .dot-amarillo { background: #f59e0b; }
+  .dot-rojo     { background: #ef4444; }
 
   /* ── MAIN CONTENT ── */
   main { max-width: 1100px; margin: 0 auto; padding: 32px 24px 60px; }
@@ -371,9 +371,9 @@
 
   <div class="legend">
     <span class="filter-label">Leyenda:</span>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--verde)"></div> Cumplido</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--amarillo)"></div> En curso</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--rojo)"></div> Pendiente</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#22c55e"></div> Cumplido</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div> En curso</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#ef4444"></div> Pendiente</div>
   </div>
 
   <div class="controls">
@@ -405,7 +405,7 @@ const compromisos = [
     items: [
       {
         id: 1,
-        titulo: "Adaptar los Estatutos UCM a la LOSU",
+        titulo: "Actualización normativa de la UCM",
         estado: "en-curso",
         progreso: 55,
         descripcion: "Reforma de los Estatutos y los principales reglamentos universitarios para adecuarlos a la Ley Orgánica del Sistema Universitario.",
@@ -473,7 +473,7 @@ const compromisos = [
     items: [
       {
         id: 8,
-        titulo: "Ningún alumno abandona por razones económicas",
+        titulo: "Apoyo a los estudios del alumnado con dificultades económicas",
         estado: "en-curso",
         progreso: 65,
         descripcion: "Garantizar que ningún estudiante tenga que abandonar sus estudios por motivos socioeconómicos, ampliando becas y ayudas.",
@@ -539,14 +539,6 @@ const compromisos = [
     area: "Financiación y Economía",
     icono: "💰",
     items: [
-      {
-        id: 15,
-        titulo: "Negociar mayor financiación con la Comunidad de Madrid",
-        estado: "en-curso",
-        progreso: 35,
-        descripcion: "Conseguir un modelo de financiación pública estable y suficiente para la UCM en la Comunidad de Madrid.",
-        evidencia: "Informe 2024: Déficit no financiero -64,5 M€ en 2023. Desequilibrio estructural estimado en -31,8 M€. Presupuesto 2024: 632,4 M€ (+2,3%). Rector reclamó públicamente mayor financiación ante la presidenta Díaz Ayuso. Objetivo parcialmente alcanzado."
-      },
       {
         id: 16,
         titulo: "Nuevo modelo de asignación presupuestaria a facultades",
