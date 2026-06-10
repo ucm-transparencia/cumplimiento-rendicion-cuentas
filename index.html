@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rendición de Cuentas · Compromisos del Rector · UCM</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap');
+
+  :root {
+    --ucm-rojo:    #b71234;
+    --ucm-rojo-medio: #d42a4a;
+    --ucm-rojo-tenue: #f5e0e5;
+    --ucm-rosa-kpi:   #fce8ed;
+    --oro:         #c8a84b;
+    --gris-100:    #f5f7fa;
+    --gris-200:    #e4e8ef;
+    --gris-500:    #6b7280;
+    --gris-800:    #1f2937;
+    --verde:       #1d7a4a;
+    --verde-claro: #d4eddf;
+    --amarillo:    #b45309;
+    --amarillo-claro: #fef3c7;
+    --rojo:        #991b1b;
+    --rojo-claro:  #fee2e2;
+    --radio:       8px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--gris-100);
+    color: var(--gris-800);
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--ucm-rojo);
+    color: #fff;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,.25);
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .header-left { display: flex; align-items: center; gap: 14px; }
+  .header-logo {
+    width: 44px; height: 44px;
+    background: rgba(255,255,255,.18);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 900; color: #fff;
+    flex-shrink: 0;
+    font-family: 'Playfair Display', serif;
+  }
+  .header-title h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: .01em;
+    line-height: 1.2;
+  }
+  .header-title p {
+    font-size: .75rem;
+    color: rgba(255,255,255,.65);
+    margin-top: 2px;
+  }
+  .legislatura-badge {
+    background: rgba(255,255,255,.18);
+    color: #fff;
+    font-size: .7rem;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  /* ── HERO SUMMARY ── */
+  .summary-strip {
+    background: #f0f0f0;
+    color: var(--gris-800);
+    padding: 36px 24px;
+  }
+  .summary-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .summary-label {
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ucm-rojo);
+    margin-bottom: 12px;
+  }
+  .summary-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--ucm-rojo);
+  }
+  .summary-sub {
+    font-size: .9rem;
+    color: var(--gris-500);
+    max-width: 640px;
+    margin-bottom: 28px;
+  }
+  .kpi-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .kpi-card {
+    background: var(--ucm-rosa-kpi);
+    border: 1px solid rgba(183,18,52,.15);
+    border-radius: var(--radio);
+    padding: 16px 22px;
+    min-width: 140px;
+    flex: 1;
+    max-width: 220px;
+    transition: background .2s;
+  }
+  .kpi-card:hover { background: #f9d0da; }
+  .kpi-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--ucm-rojo);
+  }
+  .kpi-number span { font-size: 1.2rem; }
+  .kpi-label { font-size: .78rem; color: var(--gris-500); margin-top: 4px; }
+  .kpi-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
+  .dot-verde  { background: #4ade80; }
+  .dot-amarillo { background: #fbbf24; }
+  .dot-rojo { background: #f87171; }
+
+  /* ── MAIN CONTENT ── */
+  main { max-width: 1100px; margin: 0 auto; padding: 32px 24px 60px; }
+
+  /* ── CONTROLS ── */
+  .controls {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 28px;
+  }
+  .filter-label { font-size: .8rem; color: var(--gris-500); font-weight: 500; margin-right: 4px; }
+  .btn-filter {
+    border: 1.5px solid var(--gris-200);
+    background: #fff;
+    color: var(--gris-500);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: .8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .btn-filter:hover { border-color: var(--ucm-rojo); color: var(--ucm-rojo); }
+  .btn-filter.active { background: var(--ucm-rojo); border-color: var(--ucm-rojo); color: #fff; }
+  .btn-filter.f-cumplido.active  { background: var(--verde); border-color: var(--verde); }
+  .btn-filter.f-en-curso.active  { background: var(--amarillo); border-color: var(--amarillo); }
+  .btn-filter.f-pendiente.active { background: var(--rojo); border-color: var(--rojo); }
+
+  /* ── AREA SECTIONS ── */
+  .area-section { margin-bottom: 36px; }
+  .area-title {
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--gris-500);
+    border-bottom: 2px solid var(--ucm-rojo);
+    padding-bottom: 6px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .area-icon { font-size: 1rem; }
+
+  /* ── COMPROMISE CARDS ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: #fff;
+    border-radius: var(--radio);
+    border: 1px solid var(--gris-200);
+    padding: 20px;
+    transition: box-shadow .2s, transform .15s;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    border-radius: var(--radio) 0 0 var(--radio);
+  }
+  .card.cumplido::before  { background: var(--verde); }
+  .card.en-curso::before  { background: var(--amarillo); }
+  .card.pendiente::before { background: var(--rojo); }
+
+  .card:hover { box-shadow: 0 6px 24px rgba(0,51,102,.10); transform: translateY(-2px); }
+
+  .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+  .card-title { font-size: .92rem; font-weight: 600; color: var(--gris-800); line-height: 1.35; flex: 1; }
+
+  .badge {
+    font-size: .68rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    letter-spacing: .03em;
+  }
+  .badge.cumplido  { background: var(--verde-claro); color: var(--verde); }
+  .badge.en-curso  { background: var(--amarillo-claro); color: var(--amarillo); }
+  .badge.pendiente { background: var(--rojo-claro); color: var(--rojo); }
+
+  .card-body { font-size: .82rem; color: var(--gris-500); line-height: 1.55; }
+
+  .progress-wrap { }
+  .progress-meta {
+    display: flex; justify-content: space-between;
+    font-size: .73rem; color: var(--gris-500); margin-bottom: 5px;
+  }
+  .progress-meta strong { color: var(--gris-800); }
+  .progress-bar-bg {
+    background: var(--gris-200);
+    border-radius: 4px;
+    height: 6px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width .8s cubic-bezier(.4,0,.2,1);
+    width: 0;
+  }
+  .cumplido  .progress-bar-fill { background: var(--verde); }
+  .en-curso  .progress-bar-fill { background: var(--amarillo); }
+  .pendiente .progress-bar-fill { background: var(--rojo); }
+
+  .card-evidence {
+    font-size: .75rem;
+    background: var(--gris-100);
+    border-radius: 6px;
+    padding: 8px 10px;
+    color: var(--gris-500);
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .card-evidence::before { content: '📎'; font-size: .8rem; flex-shrink: 0; }
+
+  /* ── METHODOLOGY NOTE ── */
+  .methodology {
+    background: var(--ucm-rojo-tenue);
+    border-left: 4px solid var(--ucm-rojo);
+    border-radius: 0 var(--radio) var(--radio) 0;
+    padding: 16px 20px;
+    font-size: .8rem;
+    color: var(--ucm-rojo);
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+  .methodology strong { font-weight: 600; }
+  .methodology a { color: var(--ucm-rojo); }
+
+  /* ── LEGEND ── */
+  .legend {
+    display: flex; gap: 20px; flex-wrap: wrap;
+    font-size: .78rem; color: var(--gris-500);
+    margin-bottom: 24px;
+    align-items: center;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ucm-rojo);
+    color: rgba(255,255,255,.6);
+    text-align: center;
+    padding: 24px;
+    font-size: .78rem;
+    margin-top: 40px;
+  }
+  footer a { color: var(--oro); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ── HIDDEN ── */
+  .card.hidden { display: none; }
+  .area-section.hidden-area { display: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    .kpi-row { gap: 12px; }
+    .kpi-card { min-width: 120px; }
+    .kpi-number { font-size: 1.8rem; }
+    .header-inner { padding: 14px 16px; }
+    main { padding: 20px 16px 40px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card, .progress-bar-fill { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-left">
+      <div class="header-logo">C</div>
+      <div class="header-title">
+        <h1>Compromisos Electorales del Rector</h1>
+        <p>Universidad Complutense de Madrid · Portal de Transparencia</p>
+      </div>
+    </div>
+    <div class="legislatura-badge">Legislatura 2023–2029</div>
+  </div>
+</header>
+
+<!-- KPI STRIP -->
+<div class="summary-strip">
+  <div class="summary-inner">
+    <div class="summary-label">Rendición de cuentas · Legislatura 2023–2029</div>
+    <div class="summary-headline">Grado de cumplimiento de los compromisos del rector</div>
+    <div class="summary-sub">Seguimiento del programa electoral del rector Joaquín Goyache conforme al art. 39 de la LOSU. Datos actualizados a partir del Informe del Rector 2024 presentado al Claustro el 2 de junio de 2025.</div>
+    <div class="kpi-row" id="kpi-row">
+      <!-- filled by JS -->
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <div class="methodology">
+    <strong>Metodología de evaluación:</strong> Cada compromiso se evalúa como
+    <strong>Cumplido</strong> (acción completada y verificable),
+    <strong>En curso</strong> (medidas iniciadas con avance documentado) o
+    <strong>Pendiente</strong> (sin evidencia de inicio o claramente no alcanzado).
+    La fuente principal es el <a href="https://www.ucm.es/portaldetransparencia/informe-rector-2024">Informe del Rector 2024</a>.
+  </div>
+
+  <div class="legend">
+    <span class="filter-label">Leyenda:</span>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--verde)"></div> Cumplido</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--amarillo)"></div> En curso</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--rojo)"></div> Pendiente</div>
+  </div>
+
+  <div class="controls">
+    <span class="filter-label">Filtrar:</span>
+    <button class="btn-filter active" data-filter="todos">Todos</button>
+    <button class="btn-filter f-cumplido" data-filter="cumplido">✅ Cumplidos</button>
+    <button class="btn-filter f-en-curso" data-filter="en-curso">🔄 En curso</button>
+    <button class="btn-filter f-pendiente" data-filter="pendiente">⏳ Pendientes</button>
+  </div>
+
+  <div id="areas-container"></div>
+
+</main>
+
+<footer>
+  <p>
+    <a href="https://www.ucm.es/portaldetransparencia/rendicion-cuentas">Portal de Transparencia UCM</a> ·
+    Ley Orgánica 2/2023 del Sistema Universitario (LOSU), art. 39 ·
+    Datos del <a href="https://www.ucm.es/portaldetransparencia/informe-rector-2024">Informe del Rector 2024</a>
+  </p>
+</footer>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────
+const compromisos = [
+  {
+    area: "Normativa y Gobernanza",
+    icono: "⚖️",
+    items: [
+      {
+        id: 1,
+        titulo: "Adaptar los Estatutos UCM a la LOSU",
+        estado: "en-curso",
+        progreso: 55,
+        descripcion: "Reforma de los Estatutos y los principales reglamentos universitarios para adecuarlos a la Ley Orgánica del Sistema Universitario.",
+        evidencia: "Informe 2024: Comisión de Estatutos activa con apoyo técnico. Aprobados nuevos Reglamentos de facultades y Delegación Central de Estudiantes. En proceso durante el mandato."
+      },
+      {
+        id: 2,
+        titulo: "Simplificación y digitalización administrativa",
+        estado: "cumplido",
+        progreso: 92,
+        descripcion: "Reducir la burocracia, avanzar en la administración electrónica y mejorar la accesibilidad de los servicios.",
+        evidencia: "Informe 2024: 97% de digitalización alcanzada. Manual de simplificación administrativa en desarrollo. Rediseño del Registro General y web Normativa. Administración electrónica en gestión económica desde enero 2024."
+      },
+      {
+        id: 3,
+        titulo: "Transparencia e índice Dyntra",
+        estado: "cumplido",
+        progreso: 95,
+        descripcion: "Mantener y mejorar la posición en transparencia, cumplir las obligaciones informativas y habilitar canales de denuncia.",
+        evidencia: "Informe 2024: Índice Dyntra 94,67% (tercera universidad más transparente de España). Sello máxima categoría Fundación Haz. Canal Interno de Denuncias operativo desde abril 2024. +30% peticiones acceso info."
+      }
+    ]
+  },
+  {
+    area: "Profesorado y Personal",
+    icono: "👩‍🏫",
+    items: [
+      {
+        id: 4,
+        titulo: "Estabilización del profesorado asociado",
+        estado: "en-curso",
+        progreso: 70,
+        descripcion: "Reducir la temporalidad del PDI no permanente conforme a la LOSU y los planes de estabilización.",
+        evidencia: "Informe 2024: Proceso de estabilización iniciado, eliminada la temporalidad en 110 de 159 departamentos-áreas. Plan de Actuaciones en Profesorado 2025-2027 aprobado."
+      },
+      {
+        id: 5,
+        titulo: "Dotación de plazas permanentes de PDI",
+        estado: "cumplido",
+        progreso: 85,
+        descripcion: "Incrementar las plazas de profesores con vinculación permanente para reforzar la plantilla docente e investigadora.",
+        evidencia: "Informe 2024: 118 plazas permanentes para profesores ayudantes doctores. Incremento 5% PDI permanente, 3% PDI funcionario. 28 plazas en Incorporación de Talento Docente e Investigador."
+      },
+      {
+        id: 6,
+        titulo: "Teletrabajo y conciliación para el PAS",
+        estado: "cumplido",
+        progreso: 88,
+        descripcion: "Ampliar y consolidar el teletrabajo y mejorar las condiciones laborales del personal de administración y servicios.",
+        evidencia: "Informe 2024: 1.156 solicitudes de teletrabajo aprobadas. Aprobados Reglamento de Acción Social y Reglamento del Fondo de Préstamos. 628 equipos informáticos entregados."
+      },
+      {
+        id: 7,
+        titulo: "Formación del personal (PDI y PAS)",
+        estado: "cumplido",
+        progreso: 90,
+        descripcion: "Ampliar la oferta formativa continua para el personal docente, investigador y de administración.",
+        evidencia: "Informe 2024: 102 acciones formativas PAS con +2.873 participantes. Plan Formación Profesorado: 112 cursos, 4.582 plazas (+16%). +2.000 profesores formados en Inteligencia Artificial."
+      }
+    ]
+  },
+  {
+    area: "Estudiantes y Vida Universitaria",
+    icono: "🎓",
+    items: [
+      {
+        id: 8,
+        titulo: "Ningún alumno abandona por razones económicas",
+        estado: "en-curso",
+        progreso: 65,
+        descripcion: "Garantizar que ningún estudiante tenga que abandonar sus estudios por motivos socioeconómicos, ampliando becas y ayudas.",
+        evidencia: "Informe 2024: Programa Concepción Arenal extendido a nuevos centros y Colegios Mayores. Proyecto Campus in Recovery y servicio Psicall activos. Pendiente ampliación de partidas de becas propias."
+      },
+      {
+        id: 9,
+        titulo: "UCM, la universidad más demandada en Madrid",
+        estado: "cumplido",
+        progreso: 100,
+        descripcion: "Mantener y reforzar el atractivo académico de la UCM para los estudiantes de nuevo ingreso.",
+        evidencia: "Informe 2024: La UCM fue la universidad más demandada en el Distrito Único de Madrid, con incremento en matriculaciones de nuevo ingreso."
+      },
+      {
+        id: 10,
+        titulo: "Mayor autonomía y presupuesto para la Delegación de Estudiantes",
+        estado: "cumplido",
+        progreso: 80,
+        descripcion: "Conferir mayor autonomía y recursos a la representación estudiantil.",
+        evidencia: "Informe 2024: Nuevo Reglamento de la Delegación Central de Estudiantes aprobado por el Claustro en mayo 2024."
+      },
+      {
+        id: 11,
+        titulo: "Salud mental y bienestar del estudiantado",
+        estado: "en-curso",
+        progreso: 60,
+        descripcion: "Impulsar programas de atención psicológica y bienestar para los estudiantes.",
+        evidencia: "Informe 2024: Proyecto Campus in Recovery activo. Servicio Psicall operativo. Programa Concepción Arenal con función de acompañamiento personalizado. Requiere mayor desarrollo."
+      }
+    ]
+  },
+  {
+    area: "Investigación y Transferencia",
+    icono: "🔬",
+    items: [
+      {
+        id: 12,
+        titulo: "Agilizar la gestión de proyectos de investigación",
+        estado: "cumplido",
+        progreso: 85,
+        descripcion: "Reducir los tiempos de gestión y contratación para investigadores, apoyar las oficinas de investigación en los centros.",
+        evidencia: "Informe 2024: 905 solicitudes tramitadas, 326 concedidas. 750 contratos art. 60 LOSU gestionados. OTC inscrita en el Registro oficial. 268 contratos postdoctorales y predoctorales."
+      },
+      {
+        id: 13,
+        titulo: "Incrementar la participación en Horizonte Europa",
+        estado: "en-curso",
+        progreso: 60,
+        descripcion: "Aumentar el número de propuestas competitivas presentadas y concedidas en el programa marco europeo.",
+        evidencia: "Informe 2024: 149 propuestas presentadas a Horizonte Europa. 8 ayudas REDLAB por 5,2 M€. Mejora progresiva pero tasa de éxito europeo sigue siendo un reto."
+      },
+      {
+        id: 14,
+        titulo: "Potenciar la transferencia de conocimiento y patentes",
+        estado: "cumplido",
+        progreso: 82,
+        descripcion: "Aumentar el número de patentes, registros y empresas de base tecnológica creadas.",
+        evidencia: "Informe 2024: 82 patentes y registros de propiedad intelectual. 26 licitaciones. 2 ETCUs constituidas. Más de 2.400 proyectos gestionados por la FGUCM (~89 M€)."
+      }
+    ]
+  },
+  {
+    area: "Financiación y Economía",
+    icono: "💰",
+    items: [
+      {
+        id: 15,
+        titulo: "Negociar mayor financiación con la Comunidad de Madrid",
+        estado: "en-curso",
+        progreso: 35,
+        descripcion: "Conseguir un modelo de financiación pública estable y suficiente para la UCM en la Comunidad de Madrid.",
+        evidencia: "Informe 2024: Déficit no financiero -64,5 M€ en 2023. Desequilibrio estructural estimado en -31,8 M€. Presupuesto 2024: 632,4 M€ (+2,3%). Rector reclamó públicamente mayor financiación ante la presidenta Díaz Ayuso. Objetivo parcialmente alcanzado."
+      },
+      {
+        id: 16,
+        titulo: "Nuevo modelo de asignación presupuestaria a facultades",
+        estado: "cumplido",
+        progreso: 100,
+        descripcion: "Implantar un modelo transparente y equitativo de distribución del presupuesto entre los centros.",
+        evidencia: "Informe 2024: Aprobado nuevo modelo: cuota fija (10%), financiación estructural (60%), necesidades singulares (20%) y objetivos (10%)."
+      },
+      {
+        id: 17,
+        titulo: "Captación de recursos externos y diversificación de ingresos",
+        estado: "en-curso",
+        progreso: 65,
+        descripcion: "Aumentar la financiación procedente de fuentes externas: mecenazgo, contratos, proyectos europeos.",
+        evidencia: "Informe 2024: 77,3 M€ en contratos gestionados. Página de captación de recursos publicada. FGUCM gestiona ~89 M€ en proyectos. Programa Generación Digital PYMES con fondos europeos."
+      }
+    ]
+  },
+  {
+    area: "Calidad, Rankings e Internacionalización",
+    icono: "🌍",
+    items: [
+      {
+        id: 18,
+        titulo: "Situar la UCM entre las mejores universidades españolas en rankings",
+        estado: "cumplido",
+        progreso: 100,
+        descripcion: "Mejorar la posición de la UCM en los principales rankings nacionales e internacionales.",
+        evidencia: "Informe 2024: QS World University Ranking puesto 164, primera vez como la universidad española mejor clasificada. Subida de 65 posiciones en Empleabilidad (puesto 41 mundial). QS 5 Stars: 883/1.000, Excelente."
+      },
+      {
+        id: 19,
+        titulo: "Liderazgo en sostenibilidad universitaria",
+        estado: "cumplido",
+        progreso: 100,
+        descripcion: "Consolidar a la UCM como referente en sostenibilidad ambiental.",
+        evidencia: "Informe 2024: UI GreenMetric, primera universidad española por cuarto año consecutivo, única en el top 50. Ahorro 1,2 M€ en electricidad y 3 M€ en gas. Reducción energética del 25-36%."
+      },
+      {
+        id: 20,
+        titulo: "Fortalecer la alianza Una Europa y la internacionalización",
+        estado: "cumplido",
+        progreso: 80,
+        descripcion: "Desarrollar la alianza universitaria europea Una Europa y ampliar los programas Erasmus+.",
+        evidencia: "Informe 2024: Participación activa en Una Europa (IA, sostenibilidad, patrimonio, salud). Avance en Bachelor of Arts in European Studies y BASUS. UCM lidera la UIU bajo presidencia del Rector. Erasmus sin papel digitalizado."
+      }
+    ]
+  },
+  {
+    area: "Tecnología y Transformación Digital",
+    icono: "💻",
+    items: [
+      {
+        id: 21,
+        titulo: "Transformación digital de la UCM",
+        estado: "cumplido",
+        progreso: 90,
+        descripcion: "Impulsar la digitalización integral de la institución: docencia, administración y comunicación.",
+        evidencia: "Informe 2024: Campus Virtual con 87.324 usuarios distintos. 12 proyectos unidigital concluidos. Nueva web institucional. 1.000 licencias Kahoot y 2.000 de Genially. Administración 97% digitalizada."
+      },
+      {
+        id: 22,
+        titulo: "Formación del PDI en Inteligencia Artificial",
+        estado: "cumplido",
+        progreso: 85,
+        descripcion: "Preparar al profesorado para integrar la IA en la docencia y la investigación.",
+        evidencia: "Informe 2024: Más de 2.000 profesores formados en Inteligencia Artificial a lo largo de 2024."
+      }
+    ]
+  },
+  {
+    area: "Igualdad, Inclusión y Políticas Sociales",
+    icono: "🤝",
+    items: [
+      {
+        id: 23,
+        titulo: "Consolidar el II Plan de Igualdad",
+        estado: "en-curso",
+        progreso: 65,
+        descripcion: "Desarrollar las medidas del Plan de Igualdad: perspectiva de género en docencia, prevención del acoso y conciliación.",
+        evidencia: "Informe 2024: Creación de enlaces de género en facultades. Comisiones para el plan de formación en género y plan de conciliación. Actualización de la Guía de prevención del acoso sexual. UCM miembro RUIGEU."
+      },
+      {
+        id: 24,
+        titulo: "Reforzar la Diversidad e Inclusión",
+        estado: "cumplido",
+        progreso: 80,
+        descripcion: "Fortalecer la estructura institucional dedicada a la inclusión y la no discriminación.",
+        evidencia: "Informe 2024: Acuerdo Consejo de Gobierno 24/09/2024 reforzando funciones de la Unidad de Diversidad e Inclusión. Participación en Una Europa y redes universitarias estatales."
+      },
+      {
+        id: 25,
+        titulo: "Compromiso con el voluntariado y la solidaridad",
+        estado: "cumplido",
+        progreso: 95,
+        descripcion: "Fomentar la implicación de la comunidad universitaria con la sociedad y la acción solidaria.",
+        evidencia: "Informe 2024: Respuesta DANA noviembre 2024: más de 1.100 voluntarios y +20.000€ recaudados. Programa de Aprendizaje y Servicio activo. UCM más demandada en Madrid refleja su compromiso social."
+      }
+    ]
+  },
+  {
+    area: "Infraestructuras y Campus",
+    icono: "🏛️",
+    items: [
+      {
+        id: 26,
+        titulo: "Inversión en mejora de instalaciones y centros",
+        estado: "cumplido",
+        progreso: 90,
+        descripcion: "Acometer obras de mejora, mantenimiento y modernización en los edificios y campus de la UCM.",
+        evidencia: "Informe 2024: 33,5 M€ de inversión en mejora de centros. Obras: nuevo edificio Ciencias Económicas, Central Térmica, climatización Paraninfo, nuevo TAC Hospital Clínico Veterinario. Instalación de placas solares."
+      },
+      {
+        id: 27,
+        titulo: "Avanzar en la cesión de calles de la Ciudad Universitaria",
+        estado: "en-curso",
+        progreso: 40,
+        descripcion: "Resolver el histórico proceso de cesión de las infraestructuras de la Ciudad Universitaria al Ayuntamiento de Madrid.",
+        evidencia: "Informe 2024: Avances en el proyecto de cesión con participación del Ministerio de Fomento, Consorcio y Ayuntamiento. Reuniones con Canal de Isabel II. Proceso pendiente de acuerdo definitivo."
+      }
+    ]
+  }
+];
+
+// ── RENDER ────────────────────────────────────────────────────────────────
+function calcKPIs() {
+  const all = compromisos.flatMap(a => a.items);
+  const total = all.length;
+  const cumplidos = all.filter(i => i.estado === 'cumplido').length;
+  const enCurso  = all.filter(i => i.estado === 'en-curso').length;
+  const pendientes = all.filter(i => i.estado === 'pendiente').length;
+  const pct = Math.round(cumplidos / total * 100);
+  const progMedio = Math.round(all.reduce((s, i) => s + i.progreso, 0) / total);
+  return { total, cumplidos, enCurso, pendientes, pct, progMedio };
+}
+
+function renderKPIs() {
+  const { total, cumplidos, enCurso, pendientes, pct, progMedio } = calcKPIs();
+  document.getElementById('kpi-row').innerHTML = `
+    <div class="kpi-card">
+      <div class="kpi-number">${cumplidos}<span>/${total}</span></div>
+      <div class="kpi-label"><span class="kpi-dot dot-verde"></span>Compromisos cumplidos</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-number">${enCurso}</div>
+      <div class="kpi-label"><span class="kpi-dot dot-amarillo"></span>En curso</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-number">${pendientes}</div>
+      <div class="kpi-label"><span class="kpi-dot dot-rojo"></span>Pendientes</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-number">${progMedio}<span>%</span></div>
+      <div class="kpi-label">Avance medio legislatura</div>
+    </div>
+  `;
+}
+
+function estadoLabel(estado) {
+  if (estado === 'cumplido') return '✅ Cumplido';
+  if (estado === 'en-curso') return '🔄 En curso';
+  return '⏳ Pendiente';
+}
+
+function renderAreas(filter = 'todos') {
+  const container = document.getElementById('areas-container');
+  container.innerHTML = '';
+
+  compromisos.forEach(area => {
+    const items = filter === 'todos'
+      ? area.items
+      : area.items.filter(i => i.estado === filter);
+
+    if (items.length === 0) return;
+
+    const section = document.createElement('div');
+    section.className = 'area-section';
+    section.innerHTML = `
+      <div class="area-title">
+        <span class="area-icon">${area.icono}</span>
+        ${area.area}
+        <span style="font-weight:400;font-size:.7rem;color:var(--gris-500);margin-left:auto">${items.length} compromisos</span>
+      </div>
+      <div class="cards-grid" id="grid-${area.area.replace(/\s+/g,'-')}"></div>
+    `;
+    container.appendChild(section);
+
+    const grid = section.querySelector('.cards-grid');
+    items.forEach(item => {
+      const card = document.createElement('div');
+      card.className = `card ${item.estado}`;
+      card.innerHTML = `
+        <div class="card-header">
+          <div class="card-title">${item.titulo}</div>
+          <span class="badge ${item.estado}">${estadoLabel(item.estado)}</span>
+        </div>
+        <div class="card-body">${item.descripcion}</div>
+        <div class="progress-wrap">
+          <div class="progress-meta">
+            <span>Grado de avance</span>
+            <strong>${item.progreso}%</strong>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" data-target="${item.progreso}"></div>
+          </div>
+        </div>
+        <div class="card-evidence">${item.evidencia}</div>
+      `;
+      grid.appendChild(card);
+    });
+  });
+
+  // Animate progress bars after render
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.progress-bar-fill').forEach(bar => {
+      const target = bar.getAttribute('data-target');
+      bar.style.width = target + '%';
+    });
+  });
+}
+
+// ── FILTER BUTTONS ────────────────────────────────────────────────────────
+document.querySelectorAll('.btn-filter').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderAreas(btn.getAttribute('data-filter'));
+  });
+});
+
+// ── INIT ──────────────────────────────────────────────────────────────────
+renderKPIs();
+renderAreas();
+</script>
+</body>
+</html>
