@@ -318,13 +318,62 @@
   .area-section.hidden-area { display: none; }
 
   /* ── RESPONSIVE ── */
-  @media (max-width: 600px) {
-    .cards-grid { grid-template-columns: 1fr; }
-    .kpi-row { gap: 12px; }
-    .kpi-card { min-width: 120px; }
-    .kpi-number { font-size: 1.8rem; }
-    .header-inner { padding: 14px 16px; }
-    main { padding: 20px 16px 40px; }
+  @media (max-width: 768px) {
+    /* Header */
+    .header-inner {
+      padding: 12px 16px;
+      gap: 10px;
+    }
+    .header-title h1 { font-size: 1rem; }
+    .header-title p  { font-size: .68rem; }
+    .legislatura-badge { font-size: .65rem; padding: 3px 9px; }
+
+    /* Summary strip */
+    .summary-strip { padding: 24px 16px; }
+    .summary-headline { font-size: 1.3rem; }
+    .summary-sub { font-size: .82rem; margin-bottom: 20px; }
+
+    /* KPI cards: 2 columnas en móvil */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .kpi-card { max-width: none; padding: 12px 14px; }
+    .kpi-number { font-size: 1.7rem; }
+    .kpi-number span { font-size: 1rem; }
+    .kpi-label { font-size: .72rem; }
+
+    /* Main */
+    main { padding: 16px 12px 40px; }
+
+    /* Methodology */
+    .methodology { font-size: .78rem; padding: 12px 14px; }
+
+    /* Legend y controls */
+    .legend { gap: 12px; font-size: .75rem; margin-bottom: 16px; }
+    .controls { gap: 8px; margin-bottom: 20px; }
+    .btn-filter { font-size: .75rem; padding: 5px 11px; }
+
+    /* Cards: 1 columna */
+    .cards-grid { grid-template-columns: 1fr; gap: 12px; }
+    .card { padding: 16px; gap: 10px; }
+    .card-title { font-size: .88rem; }
+    .card-body  { font-size: .8rem; }
+    .card-evidence { font-size: .73rem; }
+    .badge { font-size: .65rem; padding: 3px 8px; }
+
+    /* Area titles */
+    .area-title { font-size: .68rem; }
+    .area-section { margin-bottom: 28px; }
+  }
+
+  @media (max-width: 380px) {
+    .header-left { gap: 8px; }
+    .header-logo { width: 36px; height: 36px; font-size: 16px; }
+    .legislatura-badge { display: none; }
+    .kpi-number { font-size: 1.5rem; }
+    .summary-headline { font-size: 1.15rem; }
   }
 
   @media (prefers-reduced-motion: reduce) {
